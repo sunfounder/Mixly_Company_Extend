@@ -13,7 +13,8 @@ website: http://hznupeter.oschina.io/maker17/
 ---
 ### Date:2017.2.28 Version:1.8
 *增加ADXL345加速度计传感器。
-*增加TM1637数码管（未完成）。
+*增加TM1637数码管，显示时间、数字和简单字母。
+*优化DS1307时钟模块。
 
 ---
 ### Date:2017.2.19 Version:1.7.1

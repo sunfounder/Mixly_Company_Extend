@@ -226,12 +226,6 @@ E-mail:qiujiongtao@163.com
 		</block>
 	</category>
 	<category id="catMaker17Motion" name="动作" colour="40">
-
-		<block type="maker17_relay" name="继电器">
-			<value name="PIN">
-				<shadow type="pins_digital"></shadow>
-			</value>
-		</block>
 		
 		<block type="maker17_motor" name="电机转动">
 			<value name="speed">
@@ -660,56 +654,57 @@ E-mail:qiujiongtao@163.com
 			<block type="maker17_4digitdisplay_showDot">
 			</block>
 		</category>
-		<!-- <category id="catMaker17_TM1637" name="TM1637数码管" colour="40">
-			<block type="Maker17_TM1637_Brightness">
+		
+		<category id="catMaker17_TM1637" name="TM1637数码管" colour="40">
+			<block type="Maker17_TM1637_init" name="TM1637初始化">
+				<value name="PIN1">
+					<shadow type="pins_digital">
+						<field name="PIN">3</field>
+					</shadow>
+				</value>
+				<value name="PIN2">
+					<shadow type="pins_digital">
+						<field name="PIN">2</field>
+					</shadow>
+				</value>
+			</block>
+			<block type="Maker17_TM1637_Brightness" name="设置亮度">
 				<value name="bit">
 				</value> 
 			</block>
-			<block type="maker17_TM1637_power">
-				<field name="STAT">clear</field>
-			</block>
-			<block type="maker17_TM1637_displayString">
+			
+			<block type="maker17_TM1637_displayString" name="显示字符">
 				<value name="VALUE">
 					<shadow type="text">
-						<field name="TEXT">abcd</field>
+						<field name="TEXT">012345</field>
+					</shadow>
+				</value>
+				<value name="Speed">
+					<shadow type="math_number">
+						<field name="NUM">300</field>
 					</shadow>
 				</value>
 			</block>
-			<block type="maker17_TM1637_displayTime">
-				<value name="VALUE">
-					<shadow type="text">
-						<field name="TEXT">abcd</field>
+			<block type="maker17_TM1637_displayTime" name="显示时间">
+				<value name="hour">
+					<shadow type="math_number">
+						<field name="NUM">12</field>
+					</shadow>
+				</value>
+				<value name="minute">
+					<shadow type="math_number">
+						<field name="NUM">30</field>
+					</shadow>
+				</value>
+				<value name="second">
+					<shadow type="math_number">
+						<field name="NUM">30</field>
 					</shadow>
 				</value>
 			</block>
-		</category> -->
-<!-- 
-
-<block type="maker17_4digitdisplay_power">
-<field name="STAT">clear</field>
-</block>
-<block type="maker17_4digitdisplay_displayString">
-<value name="VALUE">
-<shadow type="text">
-<field name="TEXT">1234</field>
-</shadow>
-</value>
-</block>
-<block type="maker17_4digitdisplay_displayRunning">
-<value name="VALUE">
-<shadow type="text">
-<field name="TEXT">ABCD</field>
-</shadow>
-</value>
-<value name="DELAY">
-<shadow type="math_number">
-<field name="TEXT">500</field>
-</shadow>
-</value>
-</block> -->
-
+		</category> 
 </category>
-<category id="catMaker17Time" name="时间" colour="40">
+<category id="catMaker17Time" name="DS1307时间模块" colour="40">
 	<!-- <block type="DS1307_init" name="DS1307初始化">
 </block> -->
 <block type="DS1307_get_time" name="获取时间">

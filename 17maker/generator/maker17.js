@@ -642,23 +642,22 @@ Blockly.Arduino.Maker17_4DigitDisplay_Brightness = function() {
   var code = ' tm_4display.setBrightness(' + BRIGHTNESS + ');\n';
   return code;
 };
-
-//显示-TM1637-开关，清屏
-Blockly.Arduino.maker17_TM1637_power = function() {
-  var stat = this.getFieldValue("STAT");
+//显示-TM1637-初始化
+Blockly.Arduino.Maker17_TM1637_init = function() {
+  var CLK = Blockly.Arduino.valueToCode(this, 'PIN1', Blockly.Arduino.ORDER_ATOMIC);
+  var DIO = Blockly.Arduino.valueToCode(this, 'PIN2', Blockly.Arduino.ORDER_ATOMIC);
   Blockly.Arduino.definitions_['include_tm1637'] = '#include <TM1637.h>';
-  Blockly.Arduino.definitions_['var_tm1637'] = 'TM1637 tm1637(A4,A5);';
-  Blockly.Arduino.setups_['setup_tm1637_init'] = ' tm1637.init();\n tm1637.set(2);\n';
-  return 'tm_4display.' + stat + '();\n';
+  Blockly.Arduino.definitions_['var_tm1637'] = 'TM1637 tm1637('+CLK+','+DIO+');';
+  Blockly.Arduino.setups_['setup_tm1637_init'] = ' tm1637.init();\n';
+  return '';
 };
+
 
 //显示-TM1637-显示字符串（字符，数值、变量）
 Blockly.Arduino.maker17_TM1637_displayString = function() {
+  var Speed = Blockly.Arduino.valueToCode(this, 'Speed', Blockly.Arduino.ORDER_ATOMIC);
   var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_ATOMIC);
   // 获取需要显示的字符串0~9，AbCdEF
-  Blockly.Arduino.definitions_['include_tm1637'] = '#include <TM1637.h>';
-  Blockly.Arduino.definitions_['var_tm1637'] = 'TM1637 tm1637(A4,A5);';
-  Blockly.Arduino.setups_['setup_tm1637_init'] = ' tm1637.init();\n';
   var code='int8_t NumTab[]={';
   for(var i=1;i+1<value.length;i++)
   {
@@ -673,7 +672,7 @@ if(i+2<value.length)
 //在每个数字后面追加一个逗号，最后一个字符后面不加
   }
   code+='};'
-code+='\nint8_t ListDisp[4];\n unsigned char i = 0;\n  unsigned char count = 0;\n';
+code+='\nint8_t ListDisp[4];\n unsigned char i = 0;\n  unsigned char count = 0;\ndelay(150);';
  // return num;
   code+=' while(1)\n{\n';
   code+='i = count;\ncount++;\n';
@@ -684,19 +683,20 @@ code+='\nint8_t ListDisp[4];\n unsigned char i = 0;\n  unsigned char count = 0;\
   code+='}\ntm1637.display(0,ListDisp[0]);\n';
   code+=' tm1637.display(1,ListDisp[1]); \n';
   code+='tm1637.display(2,ListDisp[2]);\n';
-   code+='tm1637.display(2,ListDisp[3]);\n';
-   code+='delay(300);\n}\n';
+   code+='tm1637.display(3,ListDisp[3]);\n';
+   code+='delay('+Speed+');\n}\n';
   return code;
 };
 
 //显示-TM1637-显示时间
 Blockly.Arduino.maker17_TM1637_displayTime = function() {
   var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_['include_tm1637'] = '#include <TM1637.h>';
-  Blockly.Arduino.definitions_['include_timerone'] = '#include <TimerOne.h>';
+  var hour = Blockly.Arduino.valueToCode(this, 'hour', Blockly.Arduino.ORDER_ATOMIC);
+   var minute = Blockly.Arduino.valueToCode(this, 'minute', Blockly.Arduino.ORDER_ATOMIC);
+  var second = Blockly.Arduino.valueToCode(this, 'second', Blockly.Arduino.ORDER_ATOMIC);
+   Blockly.Arduino.definitions_['include_timerone'] = '#include <TimerOne.h>';
   Blockly.Arduino.definitions_['definitions_on_off'] = '#define ON 1\n#define OFF 0\n';
-  Blockly.Arduino.definitions_['definitions_TimeDisp'] = 'int8_t TimeDisp[] = {0x00,0x00,0x00,0x00};\nunsigned char ClockPoint = 1;\nunsigned char Update;\nunsigned char halfsecond = 0;\nunsigned char second;\nunsigned char minute = 0;\nunsigned char hour = 12;\n';
-  Blockly.Arduino.definitions_['var_tm1637'] = 'TM1637 tm1637(A4,A5);';
+  Blockly.Arduino.definitions_['definitions_TimeDisp'] = 'int8_t TimeDisp[] = {0x00,0x00,0x00,0x00};\nunsigned char ClockPoint = 1;\nunsigned char Update;\nunsigned char halfsecond = 0;\nunsigned char second='+second+';\nunsigned char minute = '+minute+';\nunsigned char hour = '+hour+';\n';
   Blockly.Arduino.definitions_['void_TimingISR'] = 'void TimingISR()\n{\nhalfsecond ++;\nUpdate=ON;\nif(halfsecond == 2){\nsecond ++;\nif(second==60)\n{\nminute ++;\nif(minute == 60){\nhour ++;\nif(hour == 24)\nhour = 0;\nminute = 0;\n}\nsecond = 0;\n}\nhalfsecond = 0;\n}\nClockPoint=(~ClockPoint) & 0x01;\n}';
 Blockly.Arduino.definitions_['void_TimeUpdate'] = ' void TimeUpdate(void){  if(ClockPoint)tm1637.point(POINT_ON);  else tm1637.point(POINT_OFF);   TimeDisp[0] = hour / 10;  TimeDisp[1] = hour % 10;  TimeDisp[2] = minute / 10;  TimeDisp[3] = minute % 10;  Update = OFF;}';
   Blockly.Arduino.setups_['setup_tm1637_init'] = '  tm1637.set();\n tm1637.init();\nTimer1.initialize(500000);\n  Timer1.attachInterrupt(TimingISR);\n ';
@@ -707,9 +707,7 @@ Blockly.Arduino.definitions_['void_TimeUpdate'] = ' void TimeUpdate(void){  if(C
 //显示-TM1637-设置亮度
 Blockly.Arduino.Maker17_TM1637_Brightness = function() {
   var BRIGHTNESS = this.getTitleValue('BRIGHTNESS');
-  Blockly.Arduino.definitions_['include_tm1637'] = '#include <TM1637.h>';
-  Blockly.Arduino.definitions_['var_tm1637'] = 'TM1637 tm1637(A4,A5);';
-  Blockly.Arduino.setups_['setup_tm1637_init'] = ' tm1637.init();\n';
+ 
   var code = ' tm1637.set(' + BRIGHTNESS + ');\n';
   return code;
 };
@@ -729,8 +727,8 @@ Blockly.Arduino.DS1307_get_time = function() {
   var code = '';
   if (dropdown_type == "year") code += 'clock.' + dropdown_type + '+' + 2000;
   else code += 'clock.' + dropdown_type;
-  // return 'tm_4display.' + stat + '();\n';
-  return code;
+ // return code;
+return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 //时间-DS1307-设置时间
