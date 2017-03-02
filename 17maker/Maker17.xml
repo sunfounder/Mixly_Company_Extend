@@ -100,13 +100,13 @@ E-mail:qiujiongtao@163.com
 										</block>
 									</next>
 								</block>
-
 							</next>
 						</block>
 					</next>
 				</block>
 			</next>
 		</block>
+
 		<block type="procedures_defnoreturn" x="171" y="223"  name="playmusic函数">
 			<field name="NAME">playmusic</field>
 			<statement name="STACK">
@@ -266,15 +266,6 @@ E-mail:qiujiongtao@163.com
 					</shadow>
 				</value>
 			</block>
-			
-
-			<!-- <block type="Ledcontrol_clearDisplay">
-				<value name="NUM">
-					<shadow type="math_number">
-						<field name="NUM">1</field>
-					</shadow>
-				</value>
-			</block> -->
 			<block type="MAX7219_putString" name="max7219滚动字符串">
 				<value name="String">
 					<shadow type="text">
@@ -317,7 +308,6 @@ E-mail:qiujiongtao@163.com
 
 			<block type="Max7219_img" name="预设图案">
 			</block>
-			
 		</category>
 		<category id="catMaker17OLED" name="OLED" colour="40">
 			<!--  OLED 类 -->
@@ -344,12 +334,27 @@ E-mail:qiujiongtao@163.com
 				</value>
 			</block>
 			<block type="maker17_oled_init2" name="OLED初始化(IIC)">
-				
 			</block>
 			<block type="maker17_oled_page"></block>
 			<block type="maker17_oled_getHeight_or_Width">
-
 			</block>
+			<!-- <block type="maker17_oled_showCN" name="显示中文字符">
+				<value name="POS_X">
+					<shadow type="math_number">
+						<field name="NUM">0</field>
+					</shadow>
+				</value>
+				<value name="POS_Y">
+					<shadow type="math_number">
+						<field name="NUM">0</field>
+					</shadow>
+				</value>
+				<value name="CN_ID">
+					<block type="math_number">
+						<field name="NUM">0</field>
+					</block>
+				</value>
+			</block> -->
 			<block type="maker17_oled_drawStr">
 				<value name="POS_X">
 					<shadow type="math_number">
@@ -410,19 +415,7 @@ E-mail:qiujiongtao@163.com
 			<block type="maker17_oled_setFont">
 
 			</block>
-			<!-- <block type="maker17_oled_setPrintPos">
-
-			</block>
-			<block type="maker17_oled_setColorIndex">
-
-			</block>
-			<block type="maker17_oled_setRot">
-
-			</block>
-			<block type="maker17_oled_getStrWidth">
-
-			</block> -->
-
+			
 			<block type="maker17_oled_drawPixe" name="画点">
 				<value name="POS_X">
 					<shadow type="math_number">
@@ -705,8 +698,6 @@ E-mail:qiujiongtao@163.com
 		</category> 
 </category>
 <category id="catMaker17Time" name="DS1307时间模块" colour="40">
-	<!-- <block type="DS1307_init" name="DS1307初始化">
-</block> -->
 <block type="DS1307_get_time" name="获取时间">
 </block>
 <block type="DS1307_set_time" name="设置时间">
@@ -744,22 +735,4 @@ E-mail:qiujiongtao@163.com
 	</value>
 </block>
 </category>
-<!-- <block type="title1" name="一级标题">
-		<value name="year">
-			<shadow type="math_number">
-				<field name="NUM">2017</field>
-			</shadow>
-		</value>
-	</block>
-	 <block type="math_trig1">
-	 	<value name="year">
-			<shadow type="math_number">
-				<field name="NUM">2017</field>
-			</shadow>
-		</value>
-	</block>
-	 <block type="text1">
-	 	
-	</block>
-	<block type="maker17_page"></block> -->
 </category>

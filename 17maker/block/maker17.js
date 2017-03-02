@@ -140,8 +140,8 @@ Blockly.Blocks.maker17_ADXL345 = {
     this.setColour(Blockly.Blocks.maker17.HUE1);
     this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/adxl345.png", 32, 32)).appendTitle(Blockly.MAKER17_ADXL345).appendTitle("IIC接口").appendTitle(new Blockly.FieldDropdown(MAKER17_ADXL345_SELECT), "TYPE");
     this.setInputsInline(true);
-   this.setOutput(true, Number);
-   this.setTooltip(Blockly.MAKER17_ADXL345_TIP);
+    this.setOutput(true, Number);
+    this.setTooltip(Blockly.MAKER17_ADXL345_TIP);
   }
 };
 
@@ -291,8 +291,8 @@ Blockly.Blocks.maker17_TM1637_displayTime = {
   init: function() {
     this.setColour(Blockly.Blocks.maker17.HUE3);
     this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/TM1637.png", 90, 32)).appendField(Blockly.MAKER17_TM1637_DISPLAYTIME);
-   this.appendValueInput("hour").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
-   this.appendDummyInput("").appendField(Blockly.MAKER17_HOUR);
+    this.appendValueInput("hour").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput("").appendField(Blockly.MAKER17_HOUR);
     this.appendValueInput("minute").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput("").appendField(Blockly.MAKER17_MINUTE);
     this.appendValueInput("second").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
@@ -373,7 +373,7 @@ Blockly.Blocks.MAX7219_putString = {
 //显示-MAX7219-LED点阵显示图案
 Blockly.Blocks.MAX7219_DisplayChar = {
   init: function() {
- this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/matrix44.png", 32, 32));
+    this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/matrix44.png", 32, 32));
     this.appendDummyInput().appendField(Blockly.MAKER17_MAX7219_DISPLAYCHAR);
     // this.appendValueInput("NUM").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.MAKER17_MAX7219_DISPLAYCHAR_NUM);
 
@@ -409,7 +409,7 @@ Blockly.Blocks.LedArray = {
 //显示-MAX7219-LED点阵移动
 Blockly.Blocks.Max7219_MoveChar = {
   init: function() {
-     this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/matrix44.png", 32, 32));
+    this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/matrix44.png", 32, 32));
     this.appendDummyInput().appendField("LED点阵");
     // this.appendValueInput("NUM").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField("点阵模块编号（1~8）");
     this.appendValueInput("Chars").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField("图案（变量）");
@@ -577,6 +577,20 @@ Blockly.Blocks.maker17_oled_getHeight_or_Width = {
   }
 };
 
+//显示-OLED-显示中文字
+Blockly.Blocks.maker17_oled_showCN = {
+  init: function() {
+    this.setColour(Blockly.Blocks.maker17.HUE3);
+    this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/oled.png", 32, 32)).appendField(Blockly.MAKER17_OLED_SHOWCN);
+    this.appendValueInput("POS_X", Number).appendField(Blockly.MAKER17_OLED_POSX).setCheck(Number);
+    this.appendValueInput("POS_Y", Number).appendField(Blockly.MAKER17_OLED_POSY).setCheck(Number);
+    this.appendValueInput("CN_ID", Number).appendField(Blockly.MAKER17_OLED_CN_ID).setCheck(Number);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("x(0~127),y(0~63)");
+  }
+};
 //显示-OLED-画点
 Blockly.Blocks.maker17_oled_drawPixe = {
   init: function() {
@@ -614,7 +628,7 @@ Blockly.Blocks.maker17_oled_draw_Str_Line = {
     this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/oled.png", 32, 32)).appendField(Blockly.MAKER17_OLED_DRAWSTRLINE);
     this.appendValueInput("START_X", Number).appendField(Blockly.MAKER17_OLED_START_X).setCheck(Number);
     this.appendValueInput("START_Y", Number).appendField(Blockly.MAKER17_OLED_START_Y).setCheck(Number);
-    this.appendValueInput("LENGTH", Number).appendField(Blockly.MAKER17_OLED_START_Y).setCheck(Number);
+    this.appendValueInput("LENGTH", Number).appendField(Blockly.MAKER17_OLED_LENGTH).setCheck(Number);
     this.appendDummyInput("").appendTitle(new Blockly.FieldDropdown(MAKER17_LINESELECT), "TYPE");
     this.setInputsInline(true);
     this.setPreviousStatement(true);

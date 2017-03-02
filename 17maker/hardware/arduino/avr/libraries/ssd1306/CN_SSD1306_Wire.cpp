@@ -13,7 +13,7 @@
 #include "Wire.h"
 
 #include "CN_SSD1306_Wire.h"
-
+#include "codetab.c"
 
 //∂®“Â¿‡
 CN_SSD1306_Wire::CN_SSD1306_Wire(int rst)

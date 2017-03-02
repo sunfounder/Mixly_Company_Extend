@@ -108,6 +108,8 @@ Blockly.MAKER17_OLED_DEGREE0="0度";
 Blockly.MAKER17_OLED_DEGREE90="90度";
 Blockly.MAKER17_OLED_DEGREE180="180度";
 Blockly.MAKER17_OLED_DEGREE270="270度";
+Blockly.MAKER17_OLED_SHOWCN='显示中文字';
+Blockly.MAKER17_OLED_CN_ID='汉字编号';
 
 //playmusic函数
 Blockly.MAKER17_PLAYMUSIC_SET_DUR = '设置每拍时长';
