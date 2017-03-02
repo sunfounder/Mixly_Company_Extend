@@ -460,7 +460,7 @@ Blockly.Arduino.maker17_oled_draw4Str = function() {
   var value_text_line2 = Blockly.Arduino.valueToCode(this, 'Text_line2', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
   var value_text_line3 = Blockly.Arduino.valueToCode(this, 'Text_line3', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
   var value_text_line4 = Blockly.Arduino.valueToCode(this, 'Text_line4', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
-  var code = 'u8g.drawStr(0, 12, ' + value_text_line1 + ');\n'
+  var  code = 'u8g.drawStr(0, 12, ' + value_text_line1 + ');\n'
   code += 'u8g.drawStr(0, 28, ' + value_text_line2 + ');\n'
   code += 'u8g.drawStr(0, 44, ' + value_text_line3 + ');\n'
   code += 'u8g.drawStr(0, 60, ' + value_text_line4 + ');\n'
@@ -557,7 +557,6 @@ Blockly.Arduino.maker17_oled_drawEllipse = function() {
   var D0_y = Blockly.Arduino.valueToCode(this, 'D0_Y', Blockly.Arduino.ORDER_ATOMIC);
   var Rauius_X = Blockly.Arduino.valueToCode(this, 'RADIUS_X', Blockly.Arduino.ORDER_ATOMIC);
   var Rauius_Y = Blockly.Arduino.valueToCode(this, 'RADIUS_Y', Blockly.Arduino.ORDER_ATOMIC);
-
   var type = this.getTitleValue('TYPE');
   var opt = this.getTitleValue('OPT');
   var code = "u8g." + type + "(" + D0_x + "," + D0_y + "," + Rauius_X + "," + Rauius_Y + "," + opt + "); \n";
@@ -580,8 +579,7 @@ Blockly.Arduino.maker17_oled_print = function() {
   var POS_y = Blockly.Arduino.valueToCode(this, 'POS_Y', Blockly.Arduino.ORDER_ATOMIC);
   var TEXT = Blockly.Arduino.valueToCode(this, 'TEXT', Blockly.Arduino.ORDER_ATOMIC);
   // var rad = this.getTitleValue('RAD');
-  var code = "u8g.setFont(u8g_font_osb18);\n";
-  code += "u8g.setPrintPos(" + POS_x + "," + POS_y + ");\n";
+  var code = "u8g.setPrintPos(" + POS_x + "," + POS_y + ");\n";
   code += "u8g.print(" + TEXT + "); \n";
   return code;
 };
