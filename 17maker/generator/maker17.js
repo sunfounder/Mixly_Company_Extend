@@ -303,7 +303,7 @@ Blockly.Arduino.MAX7219_init = function() {
 Blockly.Arduino.MAX7219_putString = function() {
   var str = Blockly.Arduino.valueToCode(this, 'String', Blockly.Arduino.ORDER_ATOMIC) || '\"\"';
   var speed = Blockly.Arduino.valueToCode(this, 'Speed', Blockly.Arduino.ORDER_ATOMIC);
-  var code;
+  var code='';
   if (str.charAt(0) == '"') {
     Blockly.Arduino.definitions_['define_message'] = 'char message[] = ' + str + ';';
   } else {
@@ -683,18 +683,15 @@ Blockly.Arduino.maker17_TM1637_displayString = function() {
     //在每个数字后面追加一个逗号，最后一个字符后面不加
   }
   code += '};'
-  code += '\nint8_t ListDisp[4];\n unsigned char i = 0;\n  unsigned char count = 0;\ndelay(150);';
+  code += '\nint8_t ListDisp[4];\n int8_t run=1;\nunsigned char i = 0;\n  unsigned char count = 0;\ndelay(150);';
   // return num;
-  code += ' while(1)\n{\n';
-  code += 'i = count;\ncount++;\n';
+  code += ' while(run)\n{\n';
+  code += 'i = count;\ncount++;\nif(sizeof(NumTab)<5)\nrun=0;\n';
   code += 'if(count == sizeof(NumTab)) \ncount = 0;\n';
-  code += ' for(unsigned char BitSelect = 0;BitSelect < 4;BitSelect ++)\n';
+  code += ' for(unsigned char BitSelect = 0;BitSelect <  sizeof(NumTab);BitSelect ++)\n';
   code += '{\nListDisp[BitSelect] = NumTab[i];\n';
   code += ' i++;\nif(i == sizeof(NumTab))\n i = 0;\n';
-  code += '}\ntm1637.display(0,ListDisp[0]);\n';
-  code += ' tm1637.display(1,ListDisp[1]); \n';
-  code += 'tm1637.display(2,ListDisp[2]);\n';
-  code += 'tm1637.display(3,ListDisp[3]);\n';
+  code += '}\nfor(unsigned char k = 0;k <sizeof(NumTab);k ++)\n{\ntm1637.display(k,ListDisp[k]);\n};\n';
   code += 'delay(' + Speed + ');\n}\n';
   return code;
 };

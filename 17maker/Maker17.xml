@@ -355,6 +355,9 @@ E-mail:qiujiongtao@163.com
 					</block>
 				</value>
 			</block> -->
+			<block type="maker17_oled_setFont">
+
+			</block>
 			<block type="maker17_oled_drawStr">
 				<value name="POS_X">
 					<shadow type="math_number">
@@ -375,22 +378,22 @@ E-mail:qiujiongtao@163.com
 			<block type="maker17_oled_draw4Str">
 				<value name="Text_line1">
 					<shadow type="text">
-						<field name="TEXT">Example line 1</field>
+						<field name="TEXT">Hello,world!</field>
 					</shadow>
 				</value>
 				<value name="Text_line2">
 					<shadow type="text">
-						<field name="TEXT">Example line 2</field>
+						<field name="TEXT">17maker</field>
 					</shadow>
 				</value>
 				<value name="Text_line3">
 					<shadow type="text">
-						<field name="TEXT">Example line 3</field>
+						<field name="TEXT">Design By</field>
 					</shadow>
 				</value>
 				<value name="Text_line4">
 					<shadow type="text">
-						<field name="TEXT">Example line 4</field>
+						<field name="TEXT">qiujiongtao</field>
 					</shadow>
 				</value>
 			</block> 
@@ -411,20 +414,15 @@ E-mail:qiujiongtao@163.com
 					</shadow>
 				</value>
 			</block>
-			
-			<block type="maker17_oled_setFont">
-
-			</block>
-			
 			<block type="maker17_oled_drawPixe" name="画点">
 				<value name="POS_X">
 					<shadow type="math_number">
-						<field name="NUM">1</field>
+						<field name="NUM">32</field>
 					</shadow>
 				</value>
 				<value name="POS_Y">
 					<shadow type="math_number">
-						<field name="NUM">1</field>
+						<field name="NUM">64</field>
 					</shadow>
 				</value>
 			</block>
@@ -441,12 +439,12 @@ E-mail:qiujiongtao@163.com
 				</value>
 				<value name="END_X">
 					<shadow type="math_number">
-						<field name="NUM">1</field>
+						<field name="NUM">15</field>
 					</shadow>
 				</value>
 				<value name="END_Y">
 					<shadow type="math_number">
-						<field name="NUM">1</field>
+						<field name="NUM">20</field>
 					</shadow>
 				</value>
 			</block>
