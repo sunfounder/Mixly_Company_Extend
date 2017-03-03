@@ -338,7 +338,7 @@ E-mail:qiujiongtao@163.com
 			<block type="maker17_oled_page"></block>
 			<block type="maker17_oled_getHeight_or_Width">
 			</block>
-			<!-- <block type="maker17_oled_showCN" name="显示中文字符">
+			<block type="maker17_oled_showCN" name="显示中文字符">
 				<value name="POS_X">
 					<shadow type="math_number">
 						<field name="NUM">0</field>
@@ -354,11 +354,11 @@ E-mail:qiujiongtao@163.com
 						<field name="NUM">0</field>
 					</block>
 				</value>
-			</block> -->
-			<block type="maker17_oled_setFont">
+			</block>
+			<block type="maker17_oled_setFont" name="设置字体">
 
 			</block>
-			<block type="maker17_oled_drawStr">
+			<block type="maker17_oled_drawStr" name="显示字符串">
 				<value name="POS_X">
 					<shadow type="math_number">
 						<field name="NUM">1</field>
@@ -375,7 +375,7 @@ E-mail:qiujiongtao@163.com
 					</block>
 				</value>
 			</block>
-			<block type="maker17_oled_draw4Str">
+			<block type="maker17_oled_draw4Str" name="显示多行字符串">
 				<value name="Text_line1">
 					<shadow type="text">
 						<field name="TEXT">Hello,world!</field>
@@ -397,7 +397,7 @@ E-mail:qiujiongtao@163.com
 					</shadow>
 				</value>
 			</block> 
-			<block type="maker17_oled_print">
+			<block type="maker17_oled_print" name="显示字符串变量">
 				<value name="POS_X">
 					<shadow type="math_number">
 						<field name="NUM">1</field>
