@@ -11,6 +11,11 @@ website: http://hznupeter.oschina.io/maker17/
 1.打开mixly 软件，点击导入库。
 2.选中17maker中的maker17.xml文件，稍等片刻，提示导入成功。
 ---
+### Date:2017.3.4 Version:1.9
+*OLED模块中增加显示图像（汉字）模块。
+*图像（汉字）显示的显示需要先取模，后显示。
+在库文件目录中增加PCtoLCD取模软件。
+---
 ### Date:2017.2.28 Version:1.8
 *增加ADXL345加速度计传感器。
 *增加TM1637数码管，显示时间、数字和简单字母。

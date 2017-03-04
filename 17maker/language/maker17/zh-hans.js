@@ -21,17 +21,10 @@ Blockly.MAKER17_RELAY = '继电器';
 Blockly.MAKER17_LIGHT = '光敏传感器';
 Blockly.MAKER17_LCD1602 = '液晶显示屏';
 Blockly.MAKER17_JOYSTICK_D = '摇杆按钮';
-// RGB
-Blockly.MAKER17_RGB = 'RGB灯';
-Blockly.MAKER17_RGB_NUM = '灯号(1~4)';
-Blockly.MAKER17_RGB_R = 'R值';
-Blockly.MAKER17_RGB_G = 'G值';
-Blockly.MAKER17_RGB_B = 'B值';
-Blockly.MAKER17_JOYSTICK_A = '摇杆';
+
 Blockly.MAKER17_MOTOR_SPEED = '速度(-255~255)';
 Blockly.MAKER17_MOTOR = '电机';
-Blockly.MAKER17_MQ = '气体传感器(MQ)';
-Blockly.MAKER17_FLAME = '火焰传感器';
+
 Blockly.MAKER17_BUZZER = '蜂鸣器';
 Blockly.MAKER17_DISPLAY_CLEAR = '清除第几位(1/2/3/4)';
 
@@ -108,8 +101,10 @@ Blockly.MAKER17_OLED_DEGREE0="0度";
 Blockly.MAKER17_OLED_DEGREE90="90度";
 Blockly.MAKER17_OLED_DEGREE180="180度";
 Blockly.MAKER17_OLED_DEGREE270="270度";
-Blockly.MAKER17_OLED_SHOWCN='显示中文字';
-Blockly.MAKER17_OLED_CN_ID='汉字编号';
+Blockly.MAKER17_OLED_BITMAP='显示图像（汉字）';
+Blockly.MAKER17_OLED_CN_HEIGHT='高度';
+Blockly.MAKER17_OLED_BITMAP_NAME='字模名称';
+Blockly.MAKER17_OLED_BITMAP_DATA='字模数据';
 
 //playmusic函数
 Blockly.MAKER17_PLAYMUSIC_SET_DUR = '设置每拍时长';

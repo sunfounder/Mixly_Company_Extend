@@ -119,36 +119,6 @@ Blockly.Arduino.maker17_motor_stop = function() {
   return code;
 };
 
-//执行器-RGB灯
-Blockly.Arduino.maker17_rgb = function() {
-  var dropdown_rgbpin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
-  var value__led_ = Blockly.Arduino.valueToCode(this, '_LED_', Blockly.Arduino.ORDER_ATOMIC);
-  var value_rvalue = Blockly.Arduino.valueToCode(this, 'RVALUE', Blockly.Arduino.ORDER_ATOMIC);
-  var value_gvalue = Blockly.Arduino.valueToCode(this, 'GVALUE', Blockly.Arduino.ORDER_ATOMIC);
-  var value_bvalue = Blockly.Arduino.valueToCode(this, 'BVALUE', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_['include_maker17'] = '#include "Maker17.h"';
-  Blockly.Arduino.definitions_['var_rgb_maker17' + dropdown_rgbpin] = 'Adafruit_NeoPixel  rgb_maker17_' + dropdown_rgbpin + '' + '(4);';
-  Blockly.Arduino.setups_['setup_rgb_maker17_begin_' + dropdown_rgbpin] = 'rgb_maker17_' + dropdown_rgbpin + '.begin();';
-  Blockly.Arduino.setups_['setup_rgb_maker17_setpin' + dropdown_rgbpin] = 'rgb_maker17_' + dropdown_rgbpin + '.setPin(' + dropdown_rgbpin + ');';
-  var code = 'rgb_maker17_' + dropdown_rgbpin + '.setPixelColor(' + value__led_ + '-1, ' + value_rvalue + ',' + value_gvalue + ',' + value_bvalue + ');\n';
-  code += 'rgb_maker17_' + dropdown_rgbpin + '.show();\n';
-  return code;
-};
-
-//执行器-RGB2
-Blockly.Arduino.maker17_rgb2 = function() {
-  var dropdown_rgbpin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
-  var value__led_ = Blockly.Arduino.valueToCode(this, '_LED_', Blockly.Arduino.ORDER_ATOMIC);
-  var colour_rgb_led_color = this.getFieldValue('RGB_LED_color');
-  var color = colour_rgb_led_color.colorRgb();
-  Blockly.Arduino.definitions_['include_maker17'] = '#include "Maker17.h"';
-  Blockly.Arduino.definitions_['var_rgb_maker17' + dropdown_rgbpin] = 'Adafruit_NeoPixel  rgb_maker17_' + dropdown_rgbpin + '' + '(4);';
-  Blockly.Arduino.setups_['setup_rgb_maker17_begin_' + dropdown_rgbpin] = 'rgb_maker17_' + dropdown_rgbpin + '.begin();';
-  Blockly.Arduino.setups_['setup_rgb_maker17_setpin' + dropdown_rgbpin] = 'rgb_maker17_' + dropdown_rgbpin + '.setPin(' + dropdown_rgbpin + ');';
-  var code = 'rgb_maker17_' + dropdown_rgbpin + '.setPixelColor(' + value__led_ + '-1, rgb_maker17_' + dropdown_rgbpin + '.Color' + color + ');\n';
-  code += 'rgb_maker17_' + dropdown_rgbpin + '.show();\n';
-  return code;
-};
 
 //执行器-蜂鸣器频率选择列表
 Blockly.Arduino.maker17_tone_notes = function() {
@@ -303,7 +273,7 @@ Blockly.Arduino.MAX7219_init = function() {
 Blockly.Arduino.MAX7219_putString = function() {
   var str = Blockly.Arduino.valueToCode(this, 'String', Blockly.Arduino.ORDER_ATOMIC) || '\"\"';
   var speed = Blockly.Arduino.valueToCode(this, 'Speed', Blockly.Arduino.ORDER_ATOMIC);
-  var code='';
+  var code = '';
   if (str.charAt(0) == '"') {
     Blockly.Arduino.definitions_['define_message'] = 'char message[] = ' + str + ';';
   } else {
@@ -315,14 +285,6 @@ Blockly.Arduino.MAX7219_putString = function() {
   code += 'putString(message, ' + speed + ');\n';
   return code;
 };
-
-//显示-max7219 清除LED点阵显示
-// Blockly.Arduino.Ledcontrol_clearDisplay = function() {
-//   var varName = this.getFieldValue('VAR');
-//   var lc_num = Blockly.Arduino.valueToCode(this, 'NUM', Blockly.Arduino.ORDER_ATOMIC);
-//   var code = varName + '.clearDisplay(' + (lc_num - 1) + ');\n';
-//   return [code, Blockly.Arduino.ORDER_ATOMIC];
-// };
 
 //显示-max7219-显示图案 
 Blockly.Arduino.MAX7219_DisplayChar = function() {
@@ -419,7 +381,7 @@ Blockly.Arduino.maker17_oled_init = function() {
   var DIN = Blockly.Arduino.valueToCode(this, 'DIN', Blockly.Arduino.ORDER_ATOMIC);
   var DC = Blockly.Arduino.valueToCode(this, 'DC', Blockly.Arduino.ORDER_ATOMIC);
   var CS1 = Blockly.Arduino.valueToCode(this, 'CS1', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_['define_U8glib'] = '#include "U8glib.h"';
+  Blockly.Arduino.definitions_['define_U8glib'] = '#include <U8glib.h>';
   Blockly.Arduino.definitions_['define_u8g'] = ' U8GLIB_SSD1306_128X64 u8g(' + CLK + ',' + DIN + ',' + CS1 + ',' + DC + ');';
   var oled_setup = " if ( u8g.getMode() == U8G_MODE_R3G3B2 )\nu8g.setColorIndex(255);\n";
   oled_setup += " else if ( u8g.getMode() == U8G_MODE_GRAY2BIT )\n";
@@ -437,7 +399,7 @@ Blockly.Arduino.maker17_oled_init2 = function() {
   var DIN = Blockly.Arduino.valueToCode(this, 'DIN', Blockly.Arduino.ORDER_ATOMIC);
   var DC = Blockly.Arduino.valueToCode(this, 'DC', Blockly.Arduino.ORDER_ATOMIC);
   var CS1 = Blockly.Arduino.valueToCode(this, 'CS1', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_['define_U8glib'] = '#include "U8glib.h"';
+  Blockly.Arduino.definitions_['define_U8glib'] = '#include <U8glib.h>';
   Blockly.Arduino.definitions_['define_u8g'] = ' U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NONE);';
   var oled_setup = " if ( u8g.getMode() == U8G_MODE_R3G3B2 )\nu8g.setColorIndex(255);\n";
   oled_setup += " else if ( u8g.getMode() == U8G_MODE_GRAY2BIT )\n";
@@ -485,20 +447,27 @@ Blockly.Arduino.maker17_oled_page = function() {
   }
 };
 
-//显示-OLED-oled显示汉字
-Blockly.Arduino.maker17_oled_showCN = function() {
-  var pos_x = Blockly.Arduino.valueToCode(this, 'POS_X', Blockly.Arduino.ORDER_ATOMIC);
-  var pos_y = Blockly.Arduino.valueToCode(this, 'POS_Y', Blockly.Arduino.ORDER_ATOMIC);
-  var CN_ID = Blockly.Arduino.valueToCode(this, 'CN_ID', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.definitions_['include_WIRE'] = '#include <Wire.h>';
-  Blockly.Arduino.definitions_['include_CN_SSD1306_Wire'] = '#include <CN_SSD1306_Wire.h>';
-  Blockly.Arduino.definitions_['include_codetab'] = '#include "codetab.c"';
-  Blockly.Arduino.definitions_['define_lucky'] = 'CN_SSD1306_Wire lucky(8);';
-  Blockly.Arduino.setups_['setup_lucky.Initial'] = ' lucky.Initial();\nlucky.Fill_Screen(0x00,0x00);\n';
-  // var end_y = Blockly.Arduino.valueToCode(this, 'END_Y', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'lucky.ShowCN(' + pos_x + ',' + pos_y + ',' + CN_ID + ');\n';
+//显示-OLED-显示汉字
+Blockly.Arduino.maker17_oled_showBitmap = function() {
+  var START_X = Blockly.Arduino.valueToCode(this, 'START_X', Blockly.Arduino.ORDER_ATOMIC);
+  var START_Y = Blockly.Arduino.valueToCode(this, 'START_Y', Blockly.Arduino.ORDER_ATOMIC);
+  var Height = this.getTitleValue('HEIGHT');
+  var WIDTH = this.getTitleValue('WIDTH');
+  var data_name = Blockly.Arduino.valueToCode(this, 'bitmap_name', Blockly.Arduino.ORDER_ATOMIC);
+  data_name = data_name.replace(/\"/g, ""); //过滤引号
+  var code = ' u8g.drawBitmapP( ' + START_X + ', ' + START_Y + ',' + (parseInt(WIDTH) / 8) + ' ,' + parseInt(Height) + ', ' + data_name + ');';
   return code;
 };
+
+//显示-oled-定义字模名称和数据
+Blockly.Arduino.maker17_oled_define_bitmap_data = function() {
+  var varName = Blockly.Arduino.variableDB_.getName(this.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
+  var text = this.getFieldValue('TEXT');
+  Blockly.Arduino.definitions_['var_lists' + varName] = 'const uint8_t ' + varName + '[]PROGMEM={' + text + ' };\n';
+  return '';
+};
+
+
 
 //显示-OLED-oled画直线
 Blockly.Arduino.maker17_oled_drawLine = function() {

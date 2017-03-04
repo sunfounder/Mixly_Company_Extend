@@ -338,20 +338,22 @@ E-mail:qiujiongtao@163.com
 			<block type="maker17_oled_page"></block>
 			<block type="maker17_oled_getHeight_or_Width">
 			</block>
-			<block type="maker17_oled_showCN" name="显示中文字符">
-				<value name="POS_X">
+		  <block type="maker17_oled_define_bitmap_data"></block>
+	
+			<block type="maker17_oled_showBitmap" name="显示中文字符">
+				<value name="START_X">
 					<shadow type="math_number">
 						<field name="NUM">0</field>
 					</shadow>
 				</value>
-				<value name="POS_Y">
+				<value name="START_Y">
 					<shadow type="math_number">
 						<field name="NUM">0</field>
 					</shadow>
 				</value>
-				<value name="CN_ID">
-					<block type="math_number">
-						<field name="NUM">0</field>
+				<value name="bitmap_name">
+					<block type="text">
+						<field name="TEXT">bitmap1</field>
 					</block>
 				</value>
 			</block>
@@ -591,41 +593,6 @@ E-mail:qiujiongtao@163.com
 
 		</category>
 
-		<block type="maker17_rgb" name="RGB灯">
-			<value name="PIN">
-				<shadow type="pins_digital"/>
-			</value>
-			<value name="_LED_">
-				<shadow type="math_number">
-					<field name="NUM">1</field>
-				</shadow>
-			</value>
-			<value name="RVALUE">
-				<shadow type="math_number">
-					<field name="NUM">0</field>
-				</shadow>
-			</value>
-			<value name="GVALUE">
-				<shadow type="math_number">
-					<field name="NUM">0</field>
-				</shadow>
-			</value>
-			<value name="BVALUE">
-				<shadow type="math_number">
-					<field name="NUM">0</field>
-				</shadow>
-			</value>
-		</block>
-		<block type="maker17_rgb2" name="RGB灯2">
-			<value name="PIN">
-				<shadow type="pins_digital"/>
-			</value>
-			<value name="_LED_">
-				<shadow type="math_number">
-					<field name="NUM">1</field>
-				</shadow>
-			</value>
-		</block>
 		
 		<category id="catMaker17_TM1650" name="TM1650数码管" colour="40">
 			<block type="Maker17_4DigitDisplay_Brightness">
@@ -733,4 +700,44 @@ E-mail:qiujiongtao@163.com
 	</value>
 </block>
 </category>
+<category id="catMaker17TimeDS3231" name="DS3231时间模块" colour="40">
+<block type="DS3231_get_time" name="获取时间">
+</block>
+<block type="DS3231_set_datetime" name="设置日期时间">
+	<value name="year">
+		<shadow type="math_number">
+			<field name="NUM">2017</field>
+		</shadow>
+	</value>
+	<value name="month">
+		<shadow type="math_number">
+			<field name="NUM">1</field>
+		</shadow>
+	</value>
+	<value name="day">
+		<shadow type="math_number">
+			<field name="NUM">10</field>
+		</shadow>
+	</value>
+	<value name="dayOfWeek">
+		<shadow type="math_number">
+			<field name="NUM">1</field>
+		</shadow>
+	</value>
+	<value name="hour">
+		<shadow type="math_number">
+			<field name="NUM">12</field>
+		</shadow>
+	</value>
+	<value name="minute">
+		<shadow type="math_number">
+			<field name="NUM">1</field>
+		</shadow>
+	</value>
+	<value name="second">
+		<shadow type="math_number">
+			<field name="NUM">10</field>
+		</shadow>
+	</value>
+</block>
 </category>

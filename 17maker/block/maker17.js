@@ -157,36 +157,6 @@ Blockly.Blocks.maker17_LM35temp = {
   }
 };
 
-//显示-RGB灯
-Blockly.Blocks.maker17_rgb = {
-  init: function() {
-    this.setColour(Blockly.Blocks.maker17.HUE3);
-    this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/rgb.png", 32, 32)).appendField(Blockly.MAKER17_RGB);
-    this.appendValueInput("PIN", Number).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.MIXLY_PIN);
-    this.appendValueInput("_LED_").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.MAKER17_RGB_NUM);
-    this.appendValueInput("RVALUE").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.MAKER17_RGB_R);
-    this.appendValueInput("GVALUE").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.MAKER17_RGB_G);
-    this.appendValueInput("BVALUE").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.MAKER17_RGB_B);
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setTooltip('');
-  }
-};
-
-//显示-RGB灯2
-Blockly.Blocks.maker17_rgb2 = {
-  init: function() {
-    this.setColour(Blockly.Blocks.maker17.HUE3);
-    this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/rgb.png", 32, 32)).appendField(Blockly.MAKER17_RGB);
-    this.appendValueInput("PIN", Number).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.MIXLY_PIN);
-    this.appendValueInput("_LED_").setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField(Blockly.MAKER17_RGB_NUM);
-    this.appendDummyInput("").setAlign(Blockly.ALIGN_RIGHT).appendField(new Blockly.FieldColour("#ff0000"), "RGB_LED_color");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-  }
-};
 
 //显示-TM1650-4位数码管清屏-开关
 Blockly.Blocks.maker17_4digitdisplay_power = {
@@ -577,14 +547,55 @@ Blockly.Blocks.maker17_oled_getHeight_or_Width = {
   }
 };
 
-//显示-OLED-显示中文字
-Blockly.Blocks.maker17_oled_showCN = {
+var MAKER17_OLED_BITMAP_HEIGHT_SELECT = [
+  ["16", "16"], 
+  ["8", "8"],
+  ["24", "24"],
+  ["32", "32"],
+  ["40", "40"],
+  ["48", "48"],
+  ["56", "56"],
+  ["64", "64"]
+];
+var MAKER17_OLED_BITMAP_WIDTH_SELECT = [
+  ["16", "16"], 
+  ["8", "8"],
+  ["24", "24"],
+  ["32", "32"],
+  ["40", "40"],
+  ["48", "48"],
+  ["56", "56"],
+  ["64", "64"],
+  ["72", "72"],
+  ["80", "80"],
+  ["88", "88"],
+  ["96", "96"],
+  ["104", "104"],
+  ["112", "112"],
+  ["120", "120"],
+  ["128", "128"]
+];
+//显示-oled-定义字模名称和数据
+Blockly.Blocks['maker17_oled_define_bitmap_data'] = {
   init: function() {
     this.setColour(Blockly.Blocks.maker17.HUE3);
-    this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/oled.png", 32, 32)).appendField(Blockly.MAKER17_OLED_SHOWCN);
-    this.appendValueInput("POS_X", Number).appendField(Blockly.MAKER17_OLED_POSX).setCheck(Number);
-    this.appendValueInput("POS_Y", Number).appendField(Blockly.MAKER17_OLED_POSY).setCheck(Number);
-    this.appendValueInput("CN_ID", Number).appendField(Blockly.MAKER17_OLED_CN_ID).setCheck(Number);
+  this.appendDummyInput("").appendField(Blockly.MAKER17_OLED_BITMAP_NAME).appendField(new Blockly.FieldTextInput('bitmap1'), 'VAR').appendField(Blockly.MAKER17_OLED_BITMAP_DATA).appendField(new Blockly.FieldTextInput('0x00,0x00,0x01,0x80,0x11,0x8C,0x19,0x98,0x0D,0x90,0x09,0x90,0x01,0x80,0x7F,0xFE,0x03,0xC0,0x07,0xE0,0x05,0xB0,0x0D,0x98,0x39,0x8E,0x61,0x82,0x01,0x80,0x01,0x80'), 'TEXT');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+  this.setTooltip();
+  }
+}
+
+//显示-OLED-显示位图（汉字）
+Blockly.Blocks.maker17_oled_showBitmap = {
+  init: function() {
+    this.setColour(Blockly.Blocks.maker17.HUE3);
+    this.appendDummyInput("").appendField(new Blockly.FieldImage("../../media/maker17/oled.png", 32, 32)).appendField(Blockly.MAKER17_OLED_BITMAP);
+    this.appendValueInput("START_X", Number).appendField(Blockly.MAKER17_OLED_POSX).setCheck(Number);
+    this.appendValueInput("START_Y", Number).appendField(Blockly.MAKER17_OLED_POSY).setCheck(Number); 
+    this.appendDummyInput("").appendField(Blockly.MAKER17_OLED_WIDTH).appendTitle(new Blockly.FieldDropdown(MAKER17_OLED_BITMAP_WIDTH_SELECT), "WIDTH");
+ this.appendDummyInput("").appendField(Blockly.MAKER17_OLED_HEIGHT).appendTitle(new Blockly.FieldDropdown(MAKER17_OLED_BITMAP_HEIGHT_SELECT), "HEIGHT");
+   this.appendValueInput("bitmap_name", String).appendField(Blockly.MAKER17_OLED_BITMAP_NAME).setCheck(String);
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -957,6 +968,8 @@ Blockly.Blocks['math_trig1'] = {
     this.appendValueInput('year').setCheck(Number).appendField("1");
   }
 };
+
+
 
 //显示-OLED-新建页面
 Blockly.Blocks.maker17_page = {
