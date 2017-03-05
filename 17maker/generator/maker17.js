@@ -455,7 +455,7 @@ Blockly.Arduino.maker17_oled_showBitmap = function() {
   var WIDTH = this.getTitleValue('WIDTH');
   var data_name = Blockly.Arduino.valueToCode(this, 'bitmap_name', Blockly.Arduino.ORDER_ATOMIC);
   data_name = data_name.replace(/\"/g, ""); //过滤引号
-  var code = ' u8g.drawBitmapP( ' + START_X + ', ' + START_Y + ',' + (parseInt(WIDTH) / 8) + ' ,' + parseInt(Height) + ', ' + data_name + ');';
+  var code = ' u8g.drawBitmapP( ' + START_X + ', ' + START_Y + ',' + (parseInt(WIDTH) / 8) + ' ,' + parseInt(Height) + ', ' + data_name + ');\n';
   return code;
 };
 
