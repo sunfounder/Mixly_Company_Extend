@@ -14,7 +14,8 @@ website: http://hznupeter.oschina.io/maker17/
 ### Date:2017.3.4 Version:1.9
 *OLED模块中增加显示图像（汉字）模块。
 *图像（汉字）显示的显示需要先取模，后显示。
-在库文件目录中增加PCtoLCD取模软件。
+*在库文件目录中增加PCtoLCD取模软件。
+*对oled的各项函数增加数据范围的检测，只有当x<128,x>=0,y<64,y>=0时才编写代码，否则此语句无效。
 ---
 ### Date:2017.2.28 Version:1.8
 *增加ADXL345加速度计传感器。
